@@ -12,5 +12,3 @@ flake8-docstrings~=1.6.0
 
 # Libraries being used.
 # Add any libraries you use here.
-pygame~=2.1.2
-websockets~=10.3

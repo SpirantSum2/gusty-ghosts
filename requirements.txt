@@ -1,0 +1,5 @@
+# Libraries being used.
+# Add any libraries you use here.
+pygame~=2.1.2
+websockets~=10.3
+fastapi~=0.79.0
