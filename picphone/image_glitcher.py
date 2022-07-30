@@ -34,7 +34,7 @@ def set_image(image, canvas):
     pix.close()
 
 
-def noisy_image(image, pixels, colours, swaps):
+def noisy_image(image, colours, swaps):
     """Adds random colours to random pixels in the image."""
     for _ in range(swaps):  # so you can set "glitchyness"
         x = random.randint(0, 639)
