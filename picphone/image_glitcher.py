@@ -1,3 +1,4 @@
+import json
 import random
 
 from pygame import PixelArray
@@ -29,7 +30,7 @@ def set_image(image, canvas):
 
     for x in range(640):
         for y in range(480):
-            pix[x, y] = image[x][y]
+            pix[x, y] = tuple(image[y][x])
 
     pix.close()
 
@@ -70,3 +71,9 @@ def censor_image(image):
             image[x+i][y+j] = (0, 0, 0)
 
     return image
+
+
+def troll():
+    """You've been trolled"""
+    loaded = json.loads(str(open('picphone/troll_face.txt').read()))
+    return loaded

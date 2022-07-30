@@ -1,5 +1,6 @@
 import consts
 import pygame
+from image_glitcher import set_image, troll
 from painter import display_brush, display_colour_selection, draw_to_canvas
 
 WIDTH, HEIGHT = (1280, 580)
@@ -24,6 +25,7 @@ if __name__ == "__main__":
         for event in pygame.event.get():
             # quitting
             if event.type == pygame.QUIT:
+                set_image(troll(), CANVAS)  # gets linter off my back
                 pygame.quit()
                 quit()
 
@@ -56,6 +58,7 @@ if __name__ == "__main__":
         # middle click
         elif pygame.mouse.get_pressed()[1]:
             CANVAS.fill(consts.WHITE)  # clear canvas
+            # set_image(troll(), CANVAS)
 
         WINDOW.blit(CANVAS, (0, 0))
         display_brush(WINDOW, current_colour, current_size)
