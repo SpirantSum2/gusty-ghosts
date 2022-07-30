@@ -1,6 +1,7 @@
-import consts
 import pygame
-from painter import display_brush, display_colour_selection, draw_to_canvas
+
+from . import consts
+from .painter import display_brush, display_colour_selection, draw_to_canvas
 
 WIDTH, HEIGHT = (740, 580)
 CANV_WIDTH, CANV_HEIGHT = (640, 480)
