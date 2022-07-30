@@ -1,17 +1,45 @@
 import random
 
+from pygame import PixelArray
+
 
 def get_image(canvas):
     """Gets the image in the required format from the canvas"""
-    ...
+    pix = PixelArray(canvas)  # must be .close()ed after use
+
+    image = []
+    for x in range(640):
+        column = []
+        for y in range(480):
+            val = pix[x, y]  # returns a 24-bit int so i have to do this stupid conversion
+            r = (val & 255 << 16) >> 16
+            g = (val & 255 << 8) >> 8
+            b = val & 255
+            column.append((r, g, b))
+        image.append(column)
+
+    pix.close()  # surface gets frozen otherwise
+
+    return image
+
+
+def set_image(image, canvas):
+    """Sets the image in the canvas"""
+    pix = PixelArray(canvas)
+
+    for x in range(640):
+        for y in range(480):
+            pix[x, y] = image[x][y]
+
+    pix.close()
 
 
 def noisy_image(image, pixels, colours, swaps):
     """Adds random colours to random pixels in the image."""
-    for _ in range(swaps):
+    for _ in range(swaps):  # so you can set "glitchyness"
         x = random.randint(0, 639)
         y = random.randint(0, 479)
-        image[y][x] = random.choice(colours)
+        image[x][y] = random.choice(colours)
 
     return image
 
@@ -39,4 +67,6 @@ def censor_image(image):
 
     for i in range(160):
         for j in range(120):
-            image[y+i][x+j] = (0, 0, 0)
+            image[x+i][y+j] = (0, 0, 0)
+
+    return image
